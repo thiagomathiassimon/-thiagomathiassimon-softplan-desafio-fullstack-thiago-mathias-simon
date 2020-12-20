@@ -1,0 +1,243 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background-color: #6272a4;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 1px;
+  margin: 20px 0;
+  color: white;
+}
+
+h2 {
+  font-size: 32px;
+  letter-spacing: 1px;
+  margin: 20px 0;
+  color: #6272a4;
+}
+
+
+form {
+  margin: 20px 0;
+  background-color: white;
+  padding: 30px 25px;
+  border-radius: 5px;
+}
+
+form .input-block {
+  margin-bottom: 20px;
+}
+
+form .input-block label {
+  font-size: 14px;
+  color: darkslateblue;
+}
+
+form .input-block input {
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  padding: 7px;
+  font-size: 16px;
+  color: #7159c1;
+  border-radius: 2px;
+  border: 1px solid #ccddef;
+  outline-color: #7159c1;
+}
+
+form .input-block textarea {
+  resize: none;
+  height: 70px;
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  padding: 7px;
+  font-size: 16px;
+  color: #7159c1;
+  border-radius: 2px;
+  border: 1px solid #ccddef;
+  outline-color: #7159c1;
+}
+
+form .input-block select {
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  padding: 7px;
+  font-size: 16px;
+  color: #7159c1;
+  border-radius: 2px;
+  border: 1px solid #ccddef;
+  outline-color: #7159c1;
+}
+
+form .input-block table {
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  padding: 7px;
+  font-size: 16px;
+  color: #7159c1;
+  border-radius: 2px;
+  border: 1px solid #ccddef;
+  outline-color: #7159c1;
+}
+
+form .input-block th,
+form .input-block td {
+  padding: 7px;
+  border-radius: 2px;
+  border: 1px solid #ccddef;
+  outline-color: #7159c1;
+}
+
+form .btn-login,
+form .btn-cadastrar {
+  display: block;
+  min-width: 120px;
+  border: none;
+  background-color: #7159c1;
+  color: white;
+  border-radius: 25px;
+  margin: auto;
+  padding: 7px;
+  cursor: pointer;
+}
+
+form .btn-editar,
+form .btn-excluir,
+form .btn-mais {
+  display: inline-block;
+  width: fit-content;
+  border: none;
+  background-color: #7159c1;
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+  padding: 7px;
+  cursor: pointer;
+}
+
+form .btn-incluir,
+form .btn-visualizar,
+form .btn-atribuir {
+  display: block;
+  width: 80%;
+  border: none;
+  background-color: #7159c1;
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.btn-incluir:hover,
+.btn-visualizar:hover,
+.btn-atribuir:hover,
+.btn-cadastrar:hover,
+.btn-login:hover,
+.btn-editar:hover {
+  background-color: #6272a4;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+a:hover {
+  color: red;
+}
+
+/* APARIÇÃO DO FORM */
+form {
+  overflow: hidden;
+  animation: fade 0.2s;
+}
+
+form .input-block:nth-child(1) {
+  animation: move 500ms;
+}
+
+form .input-block:nth-child(2) {
+  animation: move 400ms;
+  animation-delay: 100ms;
+  animation-fill-mode: backwards;
+}
+
+form .input-block:nth-child(3) {
+  animation: move 400ms;
+  animation-delay: 150ms;
+  animation-fill-mode: backwards;
+}
+
+form .input-block:nth-child(4) {
+  animation: move 400ms;
+  animation-delay: 200ms;
+  animation-fill-mode: backwards;
+}
+
+form .input-block:nth-child(5) {
+  animation: move 400ms;
+  animation-delay: 250ms;
+  animation-fill-mode: backwards;
+}
+
+
+form .btn-login {
+  animation: move 400ms;
+  animation-delay: 250ms;
+  animation-fill-mode: backwards;
+}
+
+form .btn-cadastrar {
+  animation: move 400ms;
+  animation-delay: 250ms;
+  animation-fill-mode: backwards;
+}
+
+@keyframes move {
+  from {
+    opacity: 0;
+    transform: translateX(-35%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
