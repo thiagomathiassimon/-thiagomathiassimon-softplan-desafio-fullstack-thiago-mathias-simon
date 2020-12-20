@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/css/Page.css';
 import { Link } from 'react-router-dom';
 
-class Login extends React.Component {
+export default class FormularioLogin extends React.Component {
   render() {
     return (
       <>
@@ -18,7 +18,7 @@ class Login extends React.Component {
                 <label for="login-password">Senha</label>
                 <input type="password" id="login-password" />
               </div>
-              <Link to='/'>
+              <Link to={this.props.to}>
                 <button type="submit" class="btn-login">Login</button>
               </Link>
             </form>
@@ -29,8 +29,5 @@ class Login extends React.Component {
         </section>
       </>
     )
-
   }
 }
-
-export default Login;
