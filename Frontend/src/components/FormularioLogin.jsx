@@ -22,9 +22,15 @@ export default class FormularioLogin extends React.Component {
                 <button type="submit" class="btn-login">Login</button>
               </Link>
             </form>
-            <Link to='/cadastro'>
+            <Link to={this.props.toCadastro}>
               <span>Ainda não possue conta? Faça-a aqui!</span>
             </Link>
+            <br />
+            <br />
+            <Link to='/paginainicial'>
+              <span>Escolheu a opção errada e quer voltar à Página Inicial?</span>
+            </Link>
+            <br />
           </div>
         </section>
       </>

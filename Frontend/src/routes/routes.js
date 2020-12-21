@@ -3,7 +3,11 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { isAutenticated } from '../services/auth';
 import Processo from '../pages/Processo';
 import LoginAdministrador from '../pages/LoginAdministrador';
-import Cadastro from '../pages/Cadastro';
+import LoginTriador from '../pages/LoginTriador';
+import LoginFinalizador from '../pages/LoginFinalizador';
+import CadastroAdministrador from '../pages/CadastroAdministrador';
+import CadastroTriador from '../pages/CadastroTriador';
+import CadastroFinalizador from '../pages/CadastroFinalizador';
 import IncluirProcesso from '../pages/IncluirProcesso';
 import VizualizarProcessos from '../pages/VizualizarProcessos';
 import PaginaInicial from '../pages/PaginaInicial';
@@ -23,7 +27,11 @@ const Routes = () => (
     <Switch>
       <Route path='/paginainicial' component={PaginaInicial} />
       <Route path='/loginadministrador' component={LoginAdministrador} />
-      <Route path='/cadastro' component={Cadastro} />
+      <Route path='/logintriador' component={LoginTriador} />
+      <Route path='/loginfinalizador' component={LoginFinalizador} />
+      <Route path='/cadastroadministrador' component={CadastroAdministrador} />
+      <Route path='/cadastrotriador' component={CadastroTriador} />
+      <Route path='/cadastrofinalizador' component={CadastroFinalizador} />
       <PrivateRoute exact path='/' component={Processo} />
       <PrivateRoute path='/incluirprocesso' component={IncluirProcesso} />
       <PrivateRoute path='/visualizarprocessos' component={VizualizarProcessos} />
