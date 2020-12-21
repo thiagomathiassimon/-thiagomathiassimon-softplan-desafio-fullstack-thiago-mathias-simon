@@ -18,21 +18,12 @@ public class Processo {
     private String usuario;
     private String parecer;
 
-    public Processo(int id_processo, String titulo, String subtitulo, String descricao, String usuario, String parecer) {
-        this.id_processo = id_processo;
+    public Processo(String titulo, String subtitulo, String descricao, String usuario, String parecer) {
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.descricao = descricao;
         this.usuario = usuario;
         this.parecer = parecer;
-    }
-
-    public Processo(int id_processo, String titulo, String subtitulo, String descricao, String usuario) {
-        this.id_processo = id_processo;
-        this.titulo = titulo;
-        this.subtitulo = subtitulo;
-        this.descricao = descricao;
-        this.usuario = usuario;
     }
 
     public Processo() {

@@ -25,7 +25,7 @@ public class ProcessoDAO {
     }
 
     public boolean add_processo(Processo p) {
-        String sql = "INSERT INTO processo (titulo, subtitulo, descricao, usuario, parecer) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO processo (titulo, subtitulo, descricao, usuarios, parecer) VALUES (?, ?, ?, ?, ?)";
 
         try {
             con = BancoConnection.getConnection();
@@ -84,7 +84,7 @@ public class ProcessoDAO {
                 p.setTitulo(rs.getString("titulo"));
                 p.setSubtitulo(rs.getString("subtitulo"));
                 p.setDescricao(rs.getString("descricao"));
-                p.setUsuario(rs.getString("usuario"));
+                p.setUsuario(rs.getString("usuarios"));
                 p.setParecer(rs.getString("parecer"));
 
                 //Adiciono no ArrayList.
@@ -104,18 +104,18 @@ public class ProcessoDAO {
         return null;
     }
 
-    public boolean delete_usuario(int id_usuario) {
+    public boolean delete_processo(int id_processo) {
 
-        String sql1 = "DELETE FROM usuario WHERE id_usuario = ?";
+        String sql1 = "DELETE FROM processo WHERE id_processo = ?";
 
         try {
             con = BancoConnection.getConnection();
             //Removendo todas as vendas do usuario
             PreparedStatement stmt1 = con.prepareStatement(sql1);
-            //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo chassi do usuario que recebemos no parametro.
-            stmt1.setInt(1, id_usuario);
+            //Preparo sendo feito, digo que no 1º '?' ele vai ser trocado pelo id do processo que recebemos no parametro.
+            stmt1.setInt(1, id_processo);
             stmt1.executeUpdate();
-            System.out.println("\nUsuario Deletado do Banco de Dados\n");
+            System.out.println("\nProcesso Deletado do Banco de Dados\n");
             return true;
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
@@ -145,7 +145,7 @@ public class ProcessoDAO {
                 p.setTitulo(rs.getString("titulo"));
                 p.setSubtitulo(rs.getString("subtitulo"));
                 p.setDescricao(rs.getString("descricao"));
-                p.setUsuario(rs.getString("usuario"));
+                p.setUsuario(rs.getString("usuarios"));
                 p.setParecer(rs.getString("parecer"));
 
             }
@@ -178,7 +178,7 @@ public class ProcessoDAO {
                 p.setTitulo(rs.getString("titulo"));
                 p.setSubtitulo(rs.getString("subtitulo"));
                 p.setDescricao(rs.getString("descricao"));
-                p.setUsuario(rs.getString("usuario"));
+                p.setUsuario(rs.getString("usuarios"));
                 p.setParecer(rs.getString("parecer"));
 
             }
@@ -195,7 +195,7 @@ public class ProcessoDAO {
     //Metodo alterar processo, onde pega as novas informações do parametro e faz o UPDATE na tabela pelo id do processo.
     public void alterar_processo(int id_processo, String titulo, String subtitulo, String descricao, String usuario, String parecer) {
 
-        String sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, telefone = ?, senha = ?, nivel = ? WHERE id_usuario = ?";
+        String sql = "UPDATE processo SET titulo = ?, subtitulo = ?, descricao = ?, usuarios = ?, parecer = ? WHERE id_processo = ?";
 
         try {
             con = BancoConnection.getConnection();
