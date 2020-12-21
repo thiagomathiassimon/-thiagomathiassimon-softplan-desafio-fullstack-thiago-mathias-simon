@@ -5,7 +5,7 @@ import FormularioLogin from '../components/FormularioLogin';
 class LoginTriador extends React.Component {
   render() {
     return (
-      <FormularioLogin to='/cadastrotriador' toCadastro='/cadastrotriador' />
+      <FormularioLogin to='/' toCadastro='/cadastrotriador' />
     )
 
   }

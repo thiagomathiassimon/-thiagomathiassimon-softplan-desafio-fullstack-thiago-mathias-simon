@@ -5,7 +5,7 @@ import FormularioLogin from '../components/FormularioLogin';
 class LoginFinalizador extends React.Component {
   render() {
     return (
-      <FormularioLogin to='/cadastrofinalizador' toCadastro='/cadastrofinalizador' />
+      <FormularioLogin to='/visualizarpendentes' toCadastro='/cadastrofinalizador' />
     )
 
   }
