@@ -69,7 +69,7 @@ public class ProcessoController {
     public boolean delete(int id) {
         ProcessoDAO pdao = new ProcessoDAO();
 
-        if (pdao.delete_usuario(id)) {
+        if (pdao.delete_processo(id)) {
             return true;
         } else {
             return false;

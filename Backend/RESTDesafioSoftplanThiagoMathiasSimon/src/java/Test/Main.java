@@ -77,21 +77,12 @@ public class Main {
         System.out.println("3) Excluir Usuario");
         System.out.println("4) Alterar Usuario");
 
-        System.out.println("5) Cadastrar Cidadão");
-        System.out.println("6) Listar Todos Cidadãos");
-        System.out.println("7) Excluir Cidadão");
-        System.out.println("8) Alterar Cidadão");
+        System.out.println("5) Cadastrar Processo");
+        System.out.println("6) Listar Todos os Processos");
+        System.out.println("7) Excluir Processo");
+        System.out.println("8) Alterar Processo");
 
-        System.out.println("9) Cadastrar Objeto");
-
-        System.out.println("10) Avaliar");
-        System.out.println("11) Listar Avaliacao");
-        System.out.println("12) Excluir Avaliacao");
-        System.out.println("13) Atualizar avaliação");
-
-        System.out.println("14) Enviar Notificação");
-
-        System.out.println("15) Sair");
+        System.out.println("9) Sair");
         System.out.print("Opção: ");
         int op = getScanner().nextInt();
 
@@ -105,15 +96,14 @@ public class Main {
                 excluir_usuario();
             case 4:
                 alterar_usuario();
-
-            /*      case 5:
+            case 5:
                 add_processo();
             case 6:
                 listar_processo();
             case 7:
                 excluir_processo();
             case 8:
-                alterar_processo();*/
+                alterar_processo();
             case 9:
                 System.exit(0);
 
@@ -135,7 +125,7 @@ public class Main {
         String telefone = getScanner().nextLine();
         System.out.print("Digite a senha: ");
         String senha = getScanner().nextLine();
-        System.out.println("Informe o nível");
+        System.out.println("Informe o nível: ");
         String nivel = getScanner().nextLine();
 
         //Instanciei um usuario, normal...
@@ -221,4 +211,95 @@ public class Main {
         cdao.alterar_usuario(u.getId_usuario(), nome, cpf, email, telefone, senha, nivel);
         menu();
     }
+
+    private void add_processo() {
+
+        System.out.print("\nDigite o titulo: ");
+        String titulo = getScanner().nextLine();
+        System.out.print("Digite o subtitulo: ");
+        String subtitulo = getScanner().nextLine();
+        System.out.print("Digite o descricao: ");
+        String descricao = getScanner().nextLine();
+        System.out.print("Digite o usuario: ");
+        String usuario = getScanner().nextLine();
+        System.out.print("Digite a parecer: ");
+        String parecer = getScanner().nextLine();
+
+        //Instanciei um processo, normal...
+        Processo p = new Processo(titulo, subtitulo, descricao, usuario, parecer);
+        //Instanciando a classe DAO do processo, chamando o metodo add_processo e passando como parametro o processo
+        //criado acima
+        ProcessoDAO pdao = new ProcessoDAO();
+        pdao.add_processo(p);
+
+        menu();
+    }
+
+    public void listar_processo() {
+
+        //Instanciando a classe DAO do processo
+        ProcessoDAO pdao = new ProcessoDAO();
+
+        System.out.println("\t\n--- Todos os processos ---\n");
+
+        //Passando um for no arraylist que o metodo mostrar_processo retorna
+        for (Processo p : pdao.mostrar_processo()) {
+            System.out.println("ID do processo: " + p.getId_processo());
+            System.out.println("Titulo: " + p.getTitulo());
+            System.out.println("Subtitulo: " + p.getSubtitulo());
+            System.out.println("Descricao: " + p.getDescricao());
+            System.out.println("Usuario: " + p.getUsuario());
+            System.out.println("Parecer: " + p.getParecer() + "\n");
+
+        }
+        menu();
+    }
+
+    public void excluir_processo() {
+
+        ProcessoDAO pdao = new ProcessoDAO();
+
+        System.out.print("\nDigite o número id para excluir: ");
+        int id_processo = getScanner().nextInt();
+
+        //Metodo que remove o processo pelo id
+        pdao.delete_processo(id_processo);
+        menu();
+
+    }
+
+    public void alterar_processo() {
+
+        ProcessoDAO pdao = new ProcessoDAO();
+
+        System.out.print("\nDigite o número do id para alterar: ");
+        int id_processo = getScanner().nextInt();
+
+        Processo p = pdao.achar_processo(id_processo);
+
+        System.out.println("ID do processo: " + p.getId_processo());
+        System.out.println("Titulo: " + p.getTitulo());
+        System.out.println("Subtitulo: " + p.getSubtitulo());
+        System.out.println("Descricao: " + p.getDescricao());
+        System.out.println("Usuario: " + p.getUsuario());
+        System.out.println("Parecer: " + p.getParecer() + "\n");
+
+        System.out.println("Digite as novas informações: \n");
+       System.out.print("\nDigite o titulo: ");
+        String titulo = getScanner().nextLine();
+        System.out.print("Digite o subtitulo: ");
+        String subtitulo = getScanner().nextLine();
+        System.out.print("Digite o descricao: ");
+        String descricao = getScanner().nextLine();
+        System.out.print("Digite o usuario: ");
+        String usuario = getScanner().nextLine();
+        System.out.print("Digite a parecer: ");
+        String parecer = getScanner().nextLine();
+
+        //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
+        //cdao.alterar_usuario(u.getId(), nome, cpf, email, telefone, senha, cep, rua, complemento, numero, bairro, cidade, estado);
+        pdao.alterar_processo(p.getId_processo(), titulo, subtitulo, descricao, usuario, parecer);
+        menu();
+    }
+
 }
