@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-
-class IncluirProcesso extends React.Component {
+export default class ListarProcessos extends React.Component {
   render() {
     return (
       <>
         <section class="form-section">
-          <h1>VIZUALIZAR PROCESSOS</h1>
+          <h1>VISUALIZAR PROCESSOS</h1>
           <div class="form-wrapper">
             <form action="">
               <div class="input-block">
@@ -26,41 +25,33 @@ class IncluirProcesso extends React.Component {
                     <tr>
                       <td>
                         Processo contra o desmatamento
-                      </td>
+                       </td>
                       <td>
                         Processo civil
                       </td>
                       <td>
                         Justiça
-                      </td>
+                        </td>
                       <td>
                         Cidadão
-                      </td>
+                       </td>
                       <td>
                         Ativo
-                      </td>
+                        </td>
                       <td>
-                        <button type="submit" class="btn-editar">
-                          Editar
-                        </button>
-                        <label> </label>
-                        <button type="submit" class="btn-excluir">
-                          Excluir
-                        </button>
+                        {this.props.children}
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <button type="submit" class="btn-cadastrar">Cadastrar</button>
             </form>
-            <Link to='/'>
+            <Link to={this.props.toPagina}>
               <span>Não era o que queria? Retorne às opções!</span>
             </Link>
           </div>
         </section>
       </>
-    );
+    )
   }
 }
-export default IncluirProcesso;

@@ -5,7 +5,7 @@ import FormularioLogin from '../components/FormularioLogin';
 class LoginAdministrador extends React.Component {
   render() {
     return (
-      <FormularioLogin to='/' toCadastro='/cadastroadministrador' />
+      <FormularioLogin to='/usuarios' toCadastro='/cadastroadministrador' />
     )
 
   }

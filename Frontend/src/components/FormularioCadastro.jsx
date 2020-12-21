@@ -80,11 +80,7 @@ export default class FormularioCadastro extends React.Component {
                 <button type="submit" class="btn-cadastrar">Cadastrar</button>
               </Link>
             </form>
-            <Link to={this.props.toLogin}>
-              <span>Já possui conta e quer voltar ao Login?</span>
-            </Link>
-            <br />
-            <br />
+            {this.props.children}
             <Link to='/paginainicial'>
               <span>Escolheu a opção errada e quer voltar à Página Inicial?</span>
             </Link>
