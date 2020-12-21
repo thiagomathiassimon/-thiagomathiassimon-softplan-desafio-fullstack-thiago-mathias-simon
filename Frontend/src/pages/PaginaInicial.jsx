@@ -19,12 +19,12 @@ class PaginaInicial extends React.Component {
                 </Link>
               </div>
               <div class="input-block">
-                <Link to='/visualizarprocessos'>
+                <Link to='/logintriador'>
                   <button type="submit" class="btn-visualizar">Usuário(a)-triador(a)</button>
                 </Link>
               </div>
               <div class="input-block">
-                <Link to='/visualizarprocessos'>
+                <Link to='/loginfinalizador'>
                   <button type="submit" class="btn-visualizar">Usuário(a)-finalizador(a)</button>
                 </Link>
               </div>

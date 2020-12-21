@@ -2,13 +2,13 @@ import React from 'react';
 import '../assets/css/Page.css';
 import FormularioLogin from '../components/FormularioLogin';
 
-class LoginAdministrador extends React.Component {
+class LoginTriador extends React.Component {
   render() {
     return (
-      <FormularioLogin to='/' toCadastro='/cadastroadministrador' />
+      <FormularioLogin to='/cadastrotriador' toCadastro='/cadastrotriador' />
     )
 
   }
 }
 
-export default LoginAdministrador;
+export default LoginTriador;

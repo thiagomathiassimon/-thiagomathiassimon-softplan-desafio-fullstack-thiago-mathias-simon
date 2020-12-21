@@ -2,8 +2,7 @@ import React from 'react';
 import '../assets/css/Page.css';
 import { Link } from 'react-router-dom';
 
-
-class Cadastro extends React.Component {
+export default class FormularioCadastro extends React.Component {
   render() {
     return (
       <>
@@ -77,16 +76,22 @@ class Cadastro extends React.Component {
                   </tr>
                 </tbody>
               </table>
-              <button type="submit" class="btn-cadastrar">Cadastrar</button>
+              <Link to={this.props.to}>
+                <button type="submit" class="btn-cadastrar">Cadastrar</button>
+              </Link>
             </form>
-            <Link to='/login'>
+            <Link to={this.props.toLogin}>
               <span>Já possui conta e quer voltar ao Login?</span>
             </Link>
+            <br />
+            <br />
+            <Link to='/paginainicial'>
+              <span>Escolheu a opção errada e quer voltar à Página Inicial?</span>
+            </Link>
+            <br />
           </div>
-        </section>
+        </section >
       </>
     )
   }
 }
-
-export default Cadastro;
