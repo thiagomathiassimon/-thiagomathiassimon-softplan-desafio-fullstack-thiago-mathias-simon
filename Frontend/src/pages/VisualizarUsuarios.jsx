@@ -53,7 +53,6 @@ class VisualizarUsuarios extends React.Component {
                   </tbody>
                 </table>
               </div>
-              <button type="submit" class="btn-cadastrar">Cadastrar</button>
             </form>
             <Link to='/'>
               <span>Não era o que queria? Retorne às opções!</span>

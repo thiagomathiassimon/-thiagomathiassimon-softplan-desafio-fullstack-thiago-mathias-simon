@@ -1,91 +1,155 @@
 import React from 'react';
-import '../assets/css/Page.css';
-import { Link } from 'react-router-dom';
+import { Field, Form, Formik } from "formik";
+import { Link } from 'react-router-dom'
+import * as yup from 'yup';
+
+const USUARIO_INICIAL = {
+  nome: '',
+  cpf: '',
+  nivel: '',
+  email: '',
+  telefone: '',
+  senha: ''
+}
+
+const UsuarioSchema = yup.object().shape({
+  nome: yup.string().required('Informe o Título do processo'),
+  cpf: yup.string().required('Informe o Subtítulo do processos'),
+  nivel: yup.string().required('Informe o Descrição do processo'),
+  email: yup.string().required('Informe o Usuário do processo'),
+  telefone: yup.string().required('Informe o Parecer do processo'),
+  senha: yup.string().required('Informe o Parecer do processo'),
+})
 
 export default class FormularioCadastro extends React.Component {
+
+  state = { teveAlteracao: false }
+
+  salvarUsuario = (usuario, actions) => {
+    actions.setSubmitting(true);
+    this.props.salvar(usuario);
+    actions.resetForm();
+    actions.setSubmitting(false);
+    this.setState({ teveAlteracao: false });
+  }
+
+  handleChange = (name, value, setFieldValue) => {
+    this.setState({ teveAlteracao: true });
+    setFieldValue(name, value);
+  }
+
+  adicionarAtor = (ator, name, values, setFieldValue) => {
+    const elenco = values[name];
+    elenco.push(ator);
+    setFieldValue(name, elenco);
+  }
+
   render() {
     return (
       <>
         <section class="form-section">
           <h1>CADASTRO</h1>
-          <div class="form-wrapper">
-            <form action="">
-              <table>
-                <thead />
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="input-block">
-                        <label for="cadastro-nome">Nome</label>
-                        <input type="text" id="cadastro-nome" />
-                      </div>
-                    </td>
-                    <td>
-                      <div class="input-block">
-                        <label for="cadastro-dtNasc">Data de Nascimento</label>
-                        <input type="date" id="cadastro-dtNasc" />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="input-block">
-                        <label for="login-cpf">CPF</label>
-                        <input type="number" id="cadastro-cpf" />
-                      </div>
-                    </td>
-                    <td>
-                      <div class="input-block">
-                        <label for="login-email">Nível</label>
-                        <select type="text" id="cadastro-nivel">
-                          <option value="selecionar">Selecione uma opção</option>
-                          <option value="administrador(a)">Administrador(a)</option>
-                          <option value="usario(a)-triador(a)">Usuário(a)-triador(a)</option>
-                          <option value="usuario(a)-finalizador(a)">Usuário(a)-finalizador(a)</option>
-                        </select>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="input-block">
-                        <label for="login-email">E-mail</label>
-                        <input type="email" id="cadastro-email" />
-                      </div>
-                    </td>
-                    <td>
-                      <div class="input-block">
-                        <label for="cadastro-telefone">Telefone</label>
-                        <input type="number" id="cadastro-telefone" />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="input-block">
-                        <label for="cadastro-password">Senha</label>
-                        <input type="password" id="cadastro-password" />
-                      </div>
-                    </td>
-                    <td>
-                      <div class="input-block">
-                        <label for="cadastro-confirmPassword">Confirme sua Senha</label>
-                        <input type="password" id="cadastro-confirmPassword" />
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <Link to={this.props.to}>
-                <button type="submit" class="btn-cadastrar">Cadastrar</button>
-              </Link>
-            </form>
-            {this.props.children}
-            <Link to='/paginainicial'>
-              <span>Escolheu a opção errada e quer voltar à Página Inicial?</span>
-            </Link>
-            <br />
-          </div>
+          <Formik
+            enableReinitialize
+            validateOnMount={true}
+            validationSchema={UsuarioSchema}
+            initialValues={this.props.usuario || USUARIO_INICIAL}
+            onSubmit={(values, actions) => this.salvarUsuario(values, actions)}
+            render={({ values, touched, errors, isSubmitting, handleReset, setFieldTouched, setFieldValue }) => (
+              <Form>
+                <div className="form-wrapper">
+                  <table>
+                    <thead></thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div className="input-block">
+                            <label>Nome:</label>
+                            <Field
+                              className="input-formulario"
+                              name="nome"
+                            />
+                            <br />
+                            {touched.nome && errors.nome && <span className="erro-campo-formulario">{errors.nome}</span>}
+                          </div>
+                        </td>
+                        <td>
+                          <div className="input-block">
+                            <label>CPF:</label>
+                            <Field
+                              className="input-formulario"
+                              name="cpf"
+                            />
+                            <br />
+                            {touched.cpf && errors.cpf && <span className="erro-campo-formulario">{errors.cpf}</span>}
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div className="input-block">
+                            <label>Nivel:</label>
+                            <Field
+                              className="input-formulario"
+                              name="nivel"
+                            />
+                            <br />
+                            {touched.nivel && errors.nivel && <span className="erro-campo-formulario">{errors.nivel}</span>}
+                          </div>
+                        </td>
+                        <td>
+                          <div className="input-block">
+                            <label>Email:</label>
+                            <Field
+                              className="input-formulario"
+                              name="email"
+                            />
+                            <br />
+                            {touched.email && errors.email && <span className="erro-campo-formulario">{errors.email}</span>}
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div className="input-block">
+                            <label>Telefone:</label>
+                            <Field
+                              className="input-formulario"
+                              name="telefone"
+                            />
+                            <br />
+                            {touched.telefone && errors.telefone && <span className="erro-campo-formulario">{errors.telefone}</span>}
+                          </div>
+                        </td>
+                        <td>
+                          <div className="input-block">
+                            <label>Senha:</label>
+                            <Field
+                              className="incluirProcesso-usuario"
+                              name="senha"
+                            />
+                            <br />
+                            {touched.senha && <errors className="senha"></errors> && <span className="erro-campo-formulario">{errors.senha}</span>}
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div className="botoes">
+                    {/* <Link to={this.props.to}> */}
+                    <button type="submit" class="btn-cadastrar">Cadastrar</button>
+                    {/* </Link> */}
+                    <br />
+                  </div>
+                </div>
+              </Form>
+            )}
+          />
+          {this.props.children}
+          <Link to='/paginainicial'>
+            <span>Escolheu a opção errada e quer voltar à Página Inicial?</span>
+          </Link>
+          <br />
         </section >
       </>
     )
