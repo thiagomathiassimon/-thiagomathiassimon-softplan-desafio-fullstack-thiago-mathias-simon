@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import ProcessoAPI from '../services/ProcessoAPI';
 
 class Processo extends React.Component {
   render() {
@@ -14,7 +15,7 @@ class Processo extends React.Component {
               </div>
               <div class="input-block">
                 <Link to='/incluirprocesso'>
-                  <button type="submit" class="btn-incluir">Incluir Processo</button>
+                  <button type="submit" class="btn-incluir" onClick={ProcessoAPI.buscarProcessos}>Incluir Processo</button>
                 </Link>
               </div>
               <div class="input-block">

@@ -65,6 +65,10 @@ form .input-block input {
   outline-color: #7159c1;
 }
 
+input:read-only {
+  background-color: #ccddef;
+}
+
 form .input-block textarea {
   resize: none;
   height: 70px;
@@ -111,8 +115,7 @@ form .input-block td {
   outline-color: #7159c1;
 }
 
-form .btn-login,
-form .btn-cadastrar {
+form .btn-login {
   display: block;
   min-width: 120px;
   border: none;
@@ -126,7 +129,8 @@ form .btn-cadastrar {
 
 form .btn-editar,
 form .btn-excluir,
-form .btn-mais {
+form .btn-mais,
+form .btn-cadastrar {
   display: inline-block;
   width: fit-content;
   border: none;
@@ -136,6 +140,13 @@ form .btn-mais {
   margin: auto;
   padding: 7px;
   cursor: pointer;
+}
+
+form .btn-editar:hover,
+form .btn-excluir:hover,
+form .btn-mais:hover,
+form .btn-cadastrar:hover {
+  background-color: #6272a4;
 }
 
 form .btn-incluir,

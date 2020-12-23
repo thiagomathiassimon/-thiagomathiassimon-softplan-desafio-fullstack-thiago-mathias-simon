@@ -1,21 +1,78 @@
 import React from 'react';
-import ListarProcessos from '../components/ListarProcessos';
+import ListarProcessosPendentes from '../components/ListarProcessosPendentes';
 import { Link } from 'react-router-dom';
+import FormularioEdicaoPendentes from '../components/FormularioEdicaoPendentes';
+
+import ProcessoAPI from '../services/ProcessoAPI';
+
 
 class VisualizarProcessosPendentes extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { processos: [] };
+    // this.excluirProcesso = this.excluirProcesso.bind(this);
+  }
+
+  componentDidMount() {
+    this.carregarProcessos();
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.processoEmEdicao === prevState.processoEmEdicao) {
+  //     return;
+  //   }
+
+  //   console.log("this.state.processoEmEdicao no Update", this.state.processoEmEdicao);
+  // }
+
+  async carregarProcessos() {
+    const processos = await ProcessoAPI.buscarProcessos();
+    this.setState({ processos: processos });
+  }
+
+
+  editarProcessso = (processos) => {
+    this.setState({ processoEmEdicao: processos });
+  }
+
+  excluirProcesso(processos) {
+    ProcessoAPI.excluirProcesso(processos.id_processo).then(() => this.carregarProcessos());
+  }
+
+  salvarProcesso = processos => {
+    if (processos.id_processo) {
+      ProcessoAPI.atualizarProcesso(processos).then(() => {
+        this.carregarProcessos();
+        this.setState({ processoEmEdicao: null });
+      });
+      return;
+    }
+
+    ProcessoAPI.inserirProcesso(processos).then(() => {
+      this.carregarProcessos();
+      this.setState({ processoEmEdicao: null })
+    });
+  }
+
+
   render() {
     return (
-      <ListarProcessos toPagina="/paginainicial"
-        children={
-          <>
-            <Link to='/incluirparecer'>
-              <button type="submit" class="btn-editar">
-                Adicionar Parecer
+      <>
+        <ListarProcessosPendentes editar={this.editarProcessso} excluir={this.excluirProcesso} processo={this.state.processos} toPagina="/paginainicial"
+          children={
+            <>
+              <Link to='/incluirparecer'>
+                <button type="submit" class="btn-editar">
+                  Adicionar Parecer
              </button>
-            </Link>
-          </>
-        }
-      />
+              </Link>
+            </>
+          }
+        />
+        <FormularioEdicaoPendentes processo={this.state.processoEmEdicao} salvar={this.salvarProcesso} />
+
+      </>
     )
   }
 

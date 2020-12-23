@@ -13,7 +13,14 @@ export default class ListarProcessos extends React.Component {
     this.props.editar(processos);
   }
 
+
   render() {
+
+    const processosFiltrados = this.props.processo.filter(processos => {
+      console.log(processos)
+      console.log(processos.parecer === 'Pendente')
+      return processos.parecer === 'Pendente'
+    })
 
     return (
       <>
@@ -34,7 +41,7 @@ export default class ListarProcessos extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.props.processo.map(processos => (
+                    {processosFiltrados.map(processos => (
                       <tr key={processos.id_processo}>
                         {console.log(processos.id_processo)}
                         <td>
