@@ -65,6 +65,8 @@ form .input-block input {
   outline-color: #7159c1;
 }
 
+
+
 input:read-only {
   background-color: #ccddef;
 }

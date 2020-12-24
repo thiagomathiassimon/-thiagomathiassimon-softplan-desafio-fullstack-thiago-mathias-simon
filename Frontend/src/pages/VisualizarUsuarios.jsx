@@ -1,66 +1,74 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import ListarUsuarios from '../components/ListarUsuarios';
+import FormularioEdicaoUsuario from '../components/FormularioEdicaoUsuario'
+import UsuarioAPI from '../services/UsuarioAPI';
 
 class VisualizarUsuarios extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { usuarios: [] };
+    // this.excluirUsuario = this.excluirUsuario.bind(this);
+  }
+
+  componentDidMount() {
+    this.carregarUsuarios();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.usuarioEmEdicao === prevState.usuarioEmEdicao) {
+      return;
+    }
+
+    console.log("this.state.usuarioEmEdicao no Update", this.state.usuarioEmEdicao);
+  }
+
+  async carregarUsuarios() {
+    const usuarios = await UsuarioAPI.buscarUsuarios();
+    this.setState({ usuarios: usuarios });
+  }
+
+  editarUsuario = (usuarios) => {
+    console.log("usuarioEmEdição: ", usuarios)
+    console.log(usuarios)
+    this.setState({ usuarioEmEdicao: usuarios });
+  }
+
+  excluirUsuario(usuarios) {
+    console.log("Passando na função excluirUsuario")
+    console.log(usuarios)
+    console.log(usuarios.id_usuario)
+    UsuarioAPI.excluirUsuario(usuarios.id_usuario).then(() => this.carregarUsuarios());
+  }
+
+  salvarUsuario = usuarios => {
+    console.log("chegando no salvar usuario")
+    console.log("1", usuarios.id)
+    console.log("2", usuarios)
+    console.log("3", usuarios.id_usuario)
+    if (usuarios.id_usuario) {
+      console.log("passando pelo if (usuarios.id)")
+      UsuarioAPI.atualizarUsuario(usuarios).then(() => {
+        this.carregarUsuarios();
+        this.setState({ usuarioEmEdicao: null });
+      });
+      console.log(this.usuarioEmEdicao)
+      return;
+    }
+
+    UsuarioAPI.inserirUsuario(usuarios).then(() => {
+      this.carregarUsuarios();
+      this.setState({ usuarioEmEdicao: null })
+    });
+  }
   render() {
     return (
       <>
-        <section class="form-section">
-          <h1>VISUALIZAR USUÁRIOS</h1>
-          <div class="form-wrapper">
-            <form action="">
-              <div class="input-block">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Nome</th>
-                      <th>Data de Nascimento</th>
-                      <th>CPF</th>
-                      <th>Nível</th>
-                      <th>Email</th>
-                      <th>Telefone</th>
-                      <th>Senha</th>
-                      <th>Ações</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        Processo contra o desmatamento
-                      </td>
-                      <td>
-                        Processo civil
-                      </td>
-                      <td>
-                        Justiça
-                      </td>
-                      <td>
-                        Cidadão
-                      </td>
-                      <td>
-                        Ativo
-                      </td>
-                      <td>
-                        <button type="submit" class="btn-editar">
-                          Editar
-                        </button>
-                        <label> </label>
-                        <button type="submit" class="btn-excluir">
-                          Excluir
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </form>
-            <Link to='/'>
-              <span>Não era o que queria? Retorne às opções!</span>
-            </Link>
-          </div>
-        </section>
+        <ListarUsuarios editar={this.editarUsuario} excluir={this.excluirUsuario} usuario={this.state.usuarios} />
+        <FormularioEdicaoUsuario usuario={this.state.usuarioEmEdicao} salvar={this.salvarUsuario} />
       </>
-    );
+    )
   }
+
 }
 export default VisualizarUsuarios;

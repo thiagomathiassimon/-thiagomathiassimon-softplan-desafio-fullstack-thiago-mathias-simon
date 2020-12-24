@@ -30,7 +30,7 @@ class VisualizarProcessos extends React.Component {
     this.setState({ processos: processos });
   }
 
-  editarProcessso = (processos) => {
+  editarProcesso = (processos) => {
     console.log("processoEmEdição: ", processos)
     console.log(processos)
     this.setState({ processoEmEdicao: processos });
@@ -71,7 +71,7 @@ class VisualizarProcessos extends React.Component {
 
     return (
       <>
-        <ListarProcessos editar={this.editarProcessso} excluir={this.excluirProcesso} processo={this.state.processos}
+        <ListarProcessos editar={this.editarProcesso} excluir={this.excluirProcesso} processo={this.state.processos}
           bntTo='/'
           toPagina="/"
         />
