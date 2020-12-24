@@ -54,7 +54,11 @@ export default class FormularioCadastro extends React.Component {
             validateOnMount={true}
             validationSchema={UsuarioSchema}
             initialValues={this.props.usuario || USUARIO_INICIAL}
-            onSubmit={(values, actions) => this.salvarUsuario(values, actions)}
+            onSubmit={(values, actions) => {
+              window.alert("Usuários adicionado no Banco de Dados")
+              window.back(-1)
+              this.salvarUsuario(values, actions)
+            }}
             render={({ values, touched, errors, isSubmitting, handleReset, setFieldTouched, setFieldValue }) => (
               <Form>
                 <div className="form-wrapper">

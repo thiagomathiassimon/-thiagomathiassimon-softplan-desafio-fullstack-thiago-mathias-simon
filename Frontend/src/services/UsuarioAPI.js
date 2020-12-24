@@ -21,7 +21,7 @@ class UsuarioService {
   }
 
   atualizarUsuario(usuario) {
-    return axios.put(`${BASE_URL}/${usuario.id}`, usuario)
+    return axios.put(`${BASE_URL}/${usuario.id_usuario}`, usuario)
       .catch(error => {
         throw error;
       })

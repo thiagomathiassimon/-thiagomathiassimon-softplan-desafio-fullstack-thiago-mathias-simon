@@ -16,16 +16,12 @@ import CadastroFinalizador from '../pages/CadastroFinalizador';
 import PaginaInicial from '../pages/PaginaInicial';
 import IncluirParecer from '../pages/IncluirParecer';
 import VisualizarPendentes from '../pages/VisualizarProcessosPendentes'
+import NotFound from './NotFound'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    isAutenticated() ? (
-      <Component {...props} />
-    ) : (
-        <Redirect to={{ pathname: '/paginainicial', state: { from: props.lacation } }} />
-      )
-  )} />
-)
+const PrivateRoute = props => {
+  const isLogged = !!localStorage.getItem('token')
+  return isLogged ? <Route {...props} /> : <Redirect to="/paginainicial" />
+}
 
 const Routes = () => (
   <BrowserRouter>
@@ -45,6 +41,7 @@ const Routes = () => (
       <PrivateRoute path='/visualizarusuarios' component={VizualizarUsuarios} />
       <PrivateRoute path='/incluirparecer' component={IncluirParecer} />
       <PrivateRoute path='/visualizarpendentes' component={VisualizarPendentes} />
+      <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
 )
