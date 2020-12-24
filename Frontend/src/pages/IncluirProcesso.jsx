@@ -1,7 +1,6 @@
 import React from 'react';
 import FormularioProcesso from '../components/FormularioProcesso';
 import ProcessoAPI from '../services/ProcessoAPI';
-import { Link } from 'react-router-dom'
 
 class IncluirProcesso extends React.Component {
   constructor(props) {
@@ -15,7 +14,7 @@ class IncluirProcesso extends React.Component {
     this.carregarProcessos();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (this.state.processoEmEdicao === prevState.processoEmEdicao) {
       return;
     }

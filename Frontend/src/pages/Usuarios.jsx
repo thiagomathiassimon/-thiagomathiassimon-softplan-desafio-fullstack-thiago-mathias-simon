@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-
 class Usuarios extends React.Component {
   render() {
     return (
@@ -33,4 +32,5 @@ class Usuarios extends React.Component {
     );
   }
 }
+
 export default Usuarios;

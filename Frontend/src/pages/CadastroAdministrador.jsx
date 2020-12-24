@@ -4,21 +4,19 @@ import FormularioCadastro from '../components/FormularioCadastro';
 import PossuiCadastro from '../components/PossuiCadastro';
 import UsuarioAPI from '../services/UsuarioAPI';
 
-
 class CadastroAdministrador extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = { usuarios: [] };
-    //this.editarFilme = this.editarFilme.bind(this);
-    this.excluirFilme = this.excluirUsuario.bind(this);
+    this.excluirUsuario = this.excluirUsuario.bind(this);
   }
 
   componentDidMount() {
     this.carregarUsuarios();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (this.state.usuarioEmEdicao === prevState.usuarioEmEdicao) {
       return;
     }

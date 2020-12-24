@@ -2,35 +2,22 @@ import React from 'react';
 import ListarProcessosPendentes from '../components/ListarProcessosPendentes';
 import { Link } from 'react-router-dom';
 import FormularioEdicaoPendentes from '../components/FormularioEdicaoPendentes';
-
 import ProcessoAPI from '../services/ProcessoAPI';
-
 
 class VisualizarProcessosPendentes extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { processos: [] };
-    // this.excluirProcesso = this.excluirProcesso.bind(this);
   }
 
   componentDidMount() {
     this.carregarProcessos();
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.processoEmEdicao === prevState.processoEmEdicao) {
-  //     return;
-  //   }
-
-  //   console.log("this.state.processoEmEdicao no Update", this.state.processoEmEdicao);
-  // }
-
   async carregarProcessos() {
     const processos = await ProcessoAPI.buscarProcessos();
     this.setState({ processos: processos });
   }
-
 
   editarProcessso = (processos) => {
     this.setState({ processoEmEdicao: processos });
@@ -55,7 +42,6 @@ class VisualizarProcessosPendentes extends React.Component {
     });
   }
 
-
   render() {
     return (
       <>
@@ -71,10 +57,9 @@ class VisualizarProcessosPendentes extends React.Component {
           }
         />
         <FormularioEdicaoPendentes processo={this.state.processoEmEdicao} salvar={this.salvarProcesso} />
-
       </>
     )
   }
-
 }
+
 export default VisualizarProcessosPendentes;

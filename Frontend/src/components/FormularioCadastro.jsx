@@ -38,12 +38,6 @@ export default class FormularioCadastro extends React.Component {
     setFieldValue(name, value);
   }
 
-  adicionarAtor = (ator, name, values, setFieldValue) => {
-    const elenco = values[name];
-    elenco.push(ator);
-    setFieldValue(name, elenco);
-  }
-
   render() {
     return (
       <>
@@ -56,10 +50,10 @@ export default class FormularioCadastro extends React.Component {
             initialValues={this.props.usuario || USUARIO_INICIAL}
             onSubmit={(values, actions) => {
               window.alert("Usuários adicionado no Banco de Dados")
-              window.back(-1)
               this.salvarUsuario(values, actions)
+              window.history.go(-1);
             }}
-            render={({ values, touched, errors, isSubmitting, handleReset, setFieldTouched, setFieldValue }) => (
+            render={({ touched, errors }) => (
               <Form>
                 <div className="form-wrapper">
                   <table>
@@ -140,9 +134,7 @@ export default class FormularioCadastro extends React.Component {
                     </tbody>
                   </table>
                   <div className="botoes">
-                    {/* <Link to={this.props.to}> */}
                     <button type="submit" class="btn-cadastrar">Cadastrar</button>
-                    {/* </Link> */}
                     <br />
                   </div>
                 </div>

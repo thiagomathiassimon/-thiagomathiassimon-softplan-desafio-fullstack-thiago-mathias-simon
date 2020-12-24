@@ -6,16 +6,14 @@ import UsuarioAPI from '../services/UsuarioAPI';
 class VisualizarUsuarios extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = { usuarios: [] };
-    // this.excluirUsuario = this.excluirUsuario.bind(this);
   }
 
   componentDidMount() {
     this.carregarUsuarios();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (this.state.usuarioEmEdicao === prevState.usuarioEmEdicao) {
       return;
     }
@@ -61,6 +59,7 @@ class VisualizarUsuarios extends React.Component {
       this.setState({ usuarioEmEdicao: null })
     });
   }
+
   render() {
     return (
       <>
@@ -69,6 +68,6 @@ class VisualizarUsuarios extends React.Component {
       </>
     )
   }
-
 }
+
 export default VisualizarUsuarios;

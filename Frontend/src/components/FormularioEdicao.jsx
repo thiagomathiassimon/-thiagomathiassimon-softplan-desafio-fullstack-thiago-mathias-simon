@@ -1,6 +1,5 @@
 import React from 'react';
 import { Field, Form, Formik } from "formik";
-import { Link } from 'react-router-dom'
 import * as yup from 'yup';
 
 const PROCESSO_INICIAL = {
@@ -18,7 +17,6 @@ const ProcessoSchema = yup.object().shape({
   usuario: yup.string().required('Informe o Usuário do processo'),
   parecer: yup.string().required('Informe o Parecer do processo'),
 })
-
 
 export default class FormularioEdicao extends React.Component {
 
@@ -41,78 +39,74 @@ export default class FormularioEdicao extends React.Component {
     return (
       <>
         <section class="form-section">
-          <div class="form-wrapper">
-            <Formik
-              enableReinitialize
-              validateOnMount={true}
-              validationSchema={ProcessoSchema}
-              initialValues={this.props.processo || PROCESSO_INICIAL}
-              onSubmit={(values, actions) => {
-                window.alert("Processo adicionado no Banco de Dados")
-                this.salvarProcesso(values, actions)
-              }}
-              render={({ values, touched, errors, isSubmitting, handleReset, setFieldTouched, setFieldValue }) => (
-                <Form>
-                  <div className="form-wrapper">
-                    <div class="input-block">
-                      <h2>EM EDIÇÃO</h2>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Título</th>
-                            <th>Subtítulo</th>
-                            <th>Descrição</th>
-                            <th>Usuários</th>
-                            <th>Parecer</th>
-                            <th>Ações</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <Field
-                                className="input-formulario"
-                                name="titulo"
-                              />
-                              {touched.titulo && errors.titulo && <span className="erro-campo-formulario">{errors.titulo}</span>}
-                            </td>
-                            <td>
-                              <Field
-                                className="input-formulario"
-                                name="subtitulo"
-                              />
-                              {touched.subtitulo && errors.subtitulo && <span className="erro-campo-formulario">{errors.subtitulo}</span>}
-                            </td>
-                            <td>
-                              <Field
-                                className="input-formulario"
-                                name="descricao"
-                              />
-                              {touched.descricao && errors.descricao && <span className="erro-campo-formulario">{errors.descricao}</span>}
-                            </td>
-                            <td>
-                              <Field
-                                className="input-formulario"
-                                name="usuario"
-                              />
-                              {touched.usuario && errors.usuario && <span className="erro-campo-formulario">{errors.usuario}</span>}
-                            </td>
-                            <td>
-                              <Field
-                                className="incluirProcesso-usuario"
-                                name="parecer"
-                              />
-                              {touched.parecer && <errors className="parecer"></errors> && <span className="erro-campo-formulario">{errors.parecer}</span>}
-                            </td>
-                            <td><button className='btn-cadastrar'>Salvar</button></td>
-                          </tr>
-                        </tbody></table>
-                    </div>
-                  </div>
-                </Form>
-              )}
-            />
-          </div>
+          <Formik
+            enableReinitialize
+            validateOnMount={true}
+            validationSchema={ProcessoSchema}
+            initialValues={this.props.processo || PROCESSO_INICIAL}
+            onSubmit={(values, actions) => {
+              window.alert("Processo adicionado no Banco de Dados")
+              this.salvarProcesso(values, actions)
+            }}
+            render={({ touched, errors }) => (
+              <Form className="Edicao">
+                <div class="input-block">
+                  <h2>EM EDIÇÃO</h2>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Título</th>
+                        <th>Subtítulo</th>
+                        <th>Descrição</th>
+                        <th>Usuários</th>
+                        <th>Parecer</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <Field
+                            className="input-formulario"
+                            name="titulo"
+                          />
+                          {touched.titulo && errors.titulo && <span className="erro-campo-formulario">{errors.titulo}</span>}
+                        </td>
+                        <td>
+                          <Field
+                            className="input-formulario"
+                            name="subtitulo"
+                          />
+                          {touched.subtitulo && errors.subtitulo && <span className="erro-campo-formulario">{errors.subtitulo}</span>}
+                        </td>
+                        <td>
+                          <Field
+                            className="input-formulario"
+                            name="descricao"
+                          />
+                          {touched.descricao && errors.descricao && <span className="erro-campo-formulario">{errors.descricao}</span>}
+                        </td>
+                        <td>
+                          <Field
+                            className="input-formulario"
+                            name="usuario"
+                          />
+                          {touched.usuario && errors.usuario && <span className="erro-campo-formulario">{errors.usuario}</span>}
+                        </td>
+                        <td>
+                          <Field
+                            className="incluirProcesso-usuario"
+                            name="parecer"
+                          />
+                          {touched.parecer && <errors className="parecer"></errors> && <span className="erro-campo-formulario">{errors.parecer}</span>}
+                        </td>
+                        <td><button className='btn-cadastrar'>Salvar</button></td>
+                      </tr>
+                    </tbody></table>
+                </div>
+              </Form>
+            )}
+          />
         </section>
       </>
     )

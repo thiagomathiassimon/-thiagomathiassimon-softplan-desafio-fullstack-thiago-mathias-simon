@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import FormularioEdicao from '../components/FormularioEdicao';
-
 
 export default class ListarProcessos extends React.Component {
 
@@ -12,7 +10,6 @@ export default class ListarProcessos extends React.Component {
   handleEditar(processos) {
     this.props.editar(processos);
   }
-
 
   render() {
 
@@ -25,7 +22,7 @@ export default class ListarProcessos extends React.Component {
     return (
       <>
         <section class="form-section">
-          <h1>VISUALIZAR PROCESSOS</h1>
+          <h1>VISUALIZAR PROCESSOS PENDENTES</h1>
           <div class="form-wrapper">
             <form action="">
               <div class="input-block">

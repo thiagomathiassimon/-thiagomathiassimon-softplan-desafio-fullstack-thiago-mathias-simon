@@ -28,24 +28,24 @@ public class JWTFilter implements Filter{
         
 
         System.out.print(req.getRequestURI()); //retorna a url
-        System.out.print(req.getRequestURI().startsWith("/api/login")); // compara se a url � igual
+        System.out.print(req.getRequestURI().startsWith("/api/login")); // compara se a url é igual 
         
         
         if(req.getRequestURI().startsWith("/RESTCarroJWT/api/login")){
-            filterChain.doFilter(servletRequest, servletResponse); // chama a funcao JWTUtil
+            filterChain.doFilter(servletRequest, servletResponse); // chama a função JWTUtil
             return;
         }
         
-        // Pega o token do cabe�alho
+        // Pega o token do cabeçalho
         String token = req.getHeader(JWTUtil.TOKEN_HEADER);
         
-        // vefica se token � diferente de null ou ""
+        // vefica se token é diferente de null ou ""
         if(token == null || token.trim().isEmpty()){
             res.setStatus(401);
             return;
         }
 
-        // valida se o token � valido
+        // valida se o token é válido
         try {
             Jws<Claims> parser = JWTUtil.decode(token);
             System.out.println("User request: "+ parser.getBody().getSubject());
