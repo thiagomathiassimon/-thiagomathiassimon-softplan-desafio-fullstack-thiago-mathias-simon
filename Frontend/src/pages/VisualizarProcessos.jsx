@@ -3,14 +3,11 @@ import ListarProcessos from '../components/ListarProcessos';
 import FormularioEdicao from '../components/FormularioEdicao';
 import ProcessoAPI from '../services/ProcessoAPI';
 
-
 class VisualizarProcessos extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = { processos: [] };
-    // this.excluirProcesso = this.excluirProcesso.bind(this);
   }
 
   componentDidMount() {
@@ -64,10 +61,7 @@ class VisualizarProcessos extends React.Component {
     });
   }
 
-
   render() {
-
-    //console.log(this.state.processos)
 
     return (
       <>
@@ -76,7 +70,6 @@ class VisualizarProcessos extends React.Component {
           toPagina="/"
         />
         <FormularioEdicao processo={this.state.processoEmEdicao} salvar={this.salvarProcesso} />
-
       </>
     );
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-
 class PaginaInicial extends React.Component {
   render() {
     return (
@@ -35,4 +34,5 @@ class PaginaInicial extends React.Component {
     );
   }
 }
+
 export default PaginaInicial;

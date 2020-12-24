@@ -19,7 +19,6 @@ const ProcessoSchema = yup.object().shape({
   parecer: yup.string().required('Informe o Parecer do processo'),
 })
 
-
 export default class FormularioProcesso extends React.Component {
 
   state = { teveAlteracao: false }
@@ -37,13 +36,6 @@ export default class FormularioProcesso extends React.Component {
     setFieldValue(name, value);
   }
 
-  adicionarAtor = (ator, name, values, setFieldValue) => {
-    const elenco = values[name];
-    elenco.push(ator);
-    setFieldValue(name, elenco);
-  }
-
-
   render() {
     return (
       <>
@@ -59,7 +51,7 @@ export default class FormularioProcesso extends React.Component {
               window.history.go(-1);
               this.salvarProcesso(values, actions)
             }}
-            render={({ values, touched, errors, isSubmitting, handleReset, setFieldTouched, setFieldValue }) => (
+            render={({ touched, errors }) => (
               <Form>
                 <div className="form-wrapper">
                   <div className="input-block">
@@ -113,48 +105,6 @@ export default class FormularioProcesso extends React.Component {
                     </button>
                   </div>
                 </div>
-                {/* <>
-              <section class="form-section">
-                <h1>INCLUIR PROCESSO</h1>
-                <div class="form-wrapper">
-                  <form action="">
-                    <div class="input-block">
-                      <label for="incluirProcesso-titulo">Título</label>
-                      <input type="text" id="cadastro-nome" />
-                      {touched.titulo && errors.titulo && <span className="erro-campo-formulario">{errors.titulo}</span>}
-                    </div>
-                    <div class="input-block">
-                      <label for="incluirProcesso-subtitulo" value={this.state.subtitulo} onChange={this.alteraSubtitulo}>Subtítulo</label>
-                      <input type="text" id="incluirProcesso-subtitulo" />
-                      {touched.subtitulo && errors.subtitulo && <span className="erro-campo-formulario">{errors.subtitulo}</span>}
-                    </div>
-                    <div class="input-block">
-                      <label for="incluirProcesso-descricao" value={this.state.descricao} onChange={this.alteraDescricao}>Descrição</label>
-                      <textarea type="text" id="incluirProcesso-descricao" />
-                      {touched.descricao && errors.descricao && <span className="erro-campo-formulario">{errors.descricao}</span>}
-                    </div>
-                    <div class="input-block" id='usuarioDiv'>
-                      <label for="incluirProcesso-usuarios" id='labelUsuario' value={this.state.usuario} onChange={this.alteraUsuario}>Usuários</label>
-                      <input type="text" id="incluirProcesso-usuarios" />
-                      {touched.usuario && errors.usuario && <span className="erro-campo-formulario">{errors.usuario}</span>}
-                    </div>
-                    <div class="input-block" id='usuarioDiv'>
-                      <label for="incluirProcesso-parecer" id='labelParecer' value={this.state.parecer} onChange={this.alteraParecer}>Parecer</label>
-                      <input type="text" id="incluirProcesso-parecer" />
-                      {touched.parecer && errors.parecer && <span className="erro-campo-formulario">{errors.parecer}</span>}
-                    </div>
-                    {this.props.children}
-                    <button className="botao-formulario" onClick={() => { handleReset(PROCESSO_INICIAL) }}>Novo</button>
-                    <Link to={this.props.btnTo}>
-                      <button type="submit" class="btn-cadastrar">{this.props.btnTitle}</button>
-                    </Link>
-                  </form>
-                  <Link to={this.props.toPagina}>
-                    <span>Não era o que queria? Retorne às opções!</span>
-                  </Link>
-                </div>
-              </section>
-            </> */}
               </Form>
             )}
           />

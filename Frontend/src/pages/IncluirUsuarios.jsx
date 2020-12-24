@@ -8,15 +8,14 @@ class IncluirUsuarios extends React.Component {
     super(props);
 
     this.state = { usuarios: [] };
-    //this.editarFilme = this.editarFilme.bind(this);
-    this.excluirFilme = this.excluirUsuario.bind(this);
+    this.excluirUsuario = this.excluirUsuario.bind(this);
   }
 
   componentDidMount() {
     this.carregarUsuarios();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (this.state.usuarioEmEdicao === prevState.usuarioEmEdicao) {
       return;
     }
@@ -56,7 +55,7 @@ class IncluirUsuarios extends React.Component {
       <FormularioCadastro usuario={this.state.usuarioEmEdicao} salvar={this.salvarUsuario} to="/usuarios"
         children={
           <>
-            <Link to='/'>
+            <Link to='/usuarios'>
               <span>Deseja voltar às opções?</span>
             </Link>
             <br />

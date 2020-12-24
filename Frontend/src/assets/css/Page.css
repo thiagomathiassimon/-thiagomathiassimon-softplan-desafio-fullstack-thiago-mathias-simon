@@ -36,7 +36,6 @@ h2 {
   color: #6272a4;
 }
 
-
 form {
   margin: 20px 0;
   background-color: white;
@@ -64,8 +63,6 @@ form .input-block input {
   border: 1px solid #ccddef;
   outline-color: #7159c1;
 }
-
-
 
 input:read-only {
   background-color: #ccddef;
@@ -184,7 +181,11 @@ a:hover {
   color: red;
 }
 
-/* APARIÇÃO DO FORM */
+.Login,
+.Edicao {
+  width: 50%;
+}
+
 form {
   overflow: hidden;
   animation: fade 0.2s;
@@ -223,7 +224,6 @@ form .input-block:nth-child(6) {
   animation-delay: 300ms;
   animation-fill-mode: backwards;
 }
-
 
 form .btn-login {
   animation: move 400ms;

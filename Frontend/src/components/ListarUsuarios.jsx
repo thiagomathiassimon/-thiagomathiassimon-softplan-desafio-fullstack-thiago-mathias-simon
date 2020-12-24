@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-
 export default class ListarUsuarios extends React.Component {
 
   handleExcluir(usuarios) {
@@ -71,7 +70,7 @@ export default class ListarUsuarios extends React.Component {
                 </table>
               </div>
             </form>
-            <Link to='/'>
+            <Link to='/usuarios'>
               <span>Não era o que queria? Retorne às opções!</span>
             </Link>
           </div>

@@ -7,7 +7,6 @@ class LoginTriador extends React.Component {
     return (
       <FormularioLogin to='/' toCadastro='/cadastrotriador' />
     )
-
   }
 }
 
