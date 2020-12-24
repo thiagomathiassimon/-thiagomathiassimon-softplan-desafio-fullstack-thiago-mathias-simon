@@ -1,0 +1,22 @@
+CREATE TABLE public.usuario (
+   id_usuario SERIAL,  
+   nome varchar(50) NOT NULL,        
+   cpf varchar(20)  NOT NULL,
+   nivel varchar(20) NOT NULL,
+   email varchar(50) NOT NULL, 
+   telefone  varchar(15) NOT NULL,
+   senha varchar(20)  NOT NULL,
+CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario),
+CONSTRAINT usuario_id_usuario_key UNIQUE (id_usuario)
+);
+
+CREATE TABLE public.processo (
+   id_processo SERIAL,  
+   titulo varchar(50) NOT NULL,        
+   subtitulo varchar(50)  NOT NULL,
+   descricao varchar(2500) NOT NULL, 
+   usuarios varchar(50) NOT NULL,
+   parecer varchar(200),
+CONSTRAINT processo_pkey PRIMARY KEY (id_processo),
+CONSTRAINT processo_id_processo_key UNIQUE (id_processo)
+);
