@@ -4,15 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
-import java.io.IOException;
-
-import java.security.Key;
-import java.sql.Date;
 import java.sql.Date; import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Random;
+
 
 public class JWTUtil {   
 	

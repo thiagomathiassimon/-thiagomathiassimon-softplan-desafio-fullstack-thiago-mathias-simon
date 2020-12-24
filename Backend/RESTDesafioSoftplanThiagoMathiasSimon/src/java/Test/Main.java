@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Test;
 
 import DAO.ProcessoDAO;
@@ -128,10 +123,9 @@ public class Main {
         System.out.println("Informe o nível: ");
         String nivel = getScanner().nextLine();
 
-        //Instanciei um usuario, normal...
+        //Instanciei um usuário...
         Usuario u = new Usuario(nome, cpf, email, telefone, senha, nivel);
-        //Instanciando a classe DAO do Usuario, chamando o metodo add_usuario e passando como parametro o usuario
-        //criado acima
+        //Instanciando a classe DAO do usuário, chamando o metodo add_usuario e passando como parâmetro o usuário criado acima
         UsuarioDAO udao = new UsuarioDAO();
         udao.add_usuario(u);
 
@@ -140,12 +134,12 @@ public class Main {
 
     public void listar_usuario() {
 
-        //Instanciando a classe DAO do usuario
+        //Instanciando a classe DAO do usuário
         UsuarioDAO udao = new UsuarioDAO();
 
         System.out.println("\t\n--- Todos os usuarios ---\n");
 
-        //Passando um for no arraylist que o metodo mostrar_usuario retorna
+        //Passando um for no arraylist que o método mostrar_usuario retorna
         for (Usuario u : udao.mostrar_usuarios()) {
             System.out.println("ID do usuario: " + u.getId_usuario());
             System.out.println("Nome: " + u.getNome());
@@ -166,7 +160,7 @@ public class Main {
         System.out.print("\nDigite o número id para excluir: ");
         int id_usuario = getScanner().nextInt();
 
-        //Metodo que remove o carro pelo numero do chassi
+        //Método que remove o usuário pelo número do id
         cdao.delete_usuario(id_usuario);
         menu();
 
@@ -174,9 +168,6 @@ public class Main {
 
     public void alterar_usuario() {
 
-        //Tem varias forma de fazer essa alteração, escolhi encontrar o carro  chamando o metodo achar_carro da classe DAO, 
-        //mostrar ele, e dar a liberdade de alterar todas as informações, em seguida passando essas novas informaçoes
-        //pro metodos altera_carro da classe CarroDAO
         UsuarioDAO cdao = new UsuarioDAO();
 
         System.out.print("\nDigite o número do id para alterar: ");
@@ -206,8 +197,7 @@ public class Main {
         System.out.println("Digite o nível");
         String nivel = getScanner().nextLine();
 
-        //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
-        //cdao.alterar_usuario(u.getId(), nome, cpf, email, telefone, senha, cep, rua, complemento, numero, bairro, cidade, estado);
+        //Passando como parâmetro as informações e o número do id do usuário que foi digitado e posteriormente encontrado
         cdao.alterar_usuario(u.getId_usuario(), nome, cpf, email, telefone, senha, nivel);
         menu();
     }
@@ -225,10 +215,9 @@ public class Main {
         System.out.print("Digite a parecer: ");
         String parecer = getScanner().nextLine();
 
-        //Instanciei um processo, normal...
+        //Instanciei um processo...
         Processo p = new Processo(titulo, subtitulo, descricao, usuario, parecer);
-        //Instanciando a classe DAO do processo, chamando o metodo add_processo e passando como parametro o processo
-        //criado acima
+        //Instanciando a classe DAO do processo, chamando o metodo add_processo e passando como parâmetro o processo criado acima
         ProcessoDAO pdao = new ProcessoDAO();
         pdao.add_processo(p);
 
@@ -242,7 +231,7 @@ public class Main {
 
         System.out.println("\t\n--- Todos os processos ---\n");
 
-        //Passando um for no arraylist que o metodo mostrar_processo retorna
+        //Passando um for no arraylist que o método mostrar_processo retorna
         for (Processo p : pdao.mostrar_processo()) {
             System.out.println("ID do processo: " + p.getId_processo());
             System.out.println("Titulo: " + p.getTitulo());
@@ -262,7 +251,7 @@ public class Main {
         System.out.print("\nDigite o número id para excluir: ");
         int id_processo = getScanner().nextInt();
 
-        //Metodo que remove o processo pelo id
+        //Método que remove o processo pelo id
         pdao.delete_processo(id_processo);
         menu();
 
@@ -285,7 +274,7 @@ public class Main {
         System.out.println("Parecer: " + p.getParecer() + "\n");
 
         System.out.println("Digite as novas informações: \n");
-       System.out.print("\nDigite o titulo: ");
+        System.out.print("\nDigite o titulo: ");
         String titulo = getScanner().nextLine();
         System.out.print("Digite o subtitulo: ");
         String subtitulo = getScanner().nextLine();
@@ -296,8 +285,7 @@ public class Main {
         System.out.print("Digite a parecer: ");
         String parecer = getScanner().nextLine();
 
-        //Passando como parametro as informações e o numero do chassi do carro que foi digitado e posteriormente encontrado
-        //cdao.alterar_usuario(u.getId(), nome, cpf, email, telefone, senha, cep, rua, complemento, numero, bairro, cidade, estado);
+        //Passando como parâmetro as informações e o número do id do processo que foi digitado e posteriormente encontrado
         pdao.alterar_processo(p.getId_processo(), titulo, subtitulo, descricao, usuario, parecer);
         menu();
     }
